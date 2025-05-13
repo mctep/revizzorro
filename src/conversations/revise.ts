@@ -12,7 +12,9 @@ export async function revise(conversation: Conversation, ctx: Context) {
 		return;
 	}
 
-	const dictionary = shuffle(getDictionary(userId));
+	const dictionary = await conversation.external(() =>
+		shuffle(getDictionary(userId)),
+	);
 
 	if (!dictionary.length) {
 		await ctx.reply('You do not have any added words');

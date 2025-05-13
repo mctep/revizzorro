@@ -5,7 +5,6 @@ import { assert } from './util/assert.ts';
 
 async function main() {
 	assert(TELEGRAM_TOKEN, 'TELEGRAM_TOKEN is not defined');
-	await app(TELEGRAM_TOKEN);
 
 	const web = express();
 	const port = process.env.PORT || 4000;
@@ -17,6 +16,8 @@ async function main() {
 	web.listen(port, () => {
 		console.log(`Example app listening on port ${port}`);
 	});
+
+	await app(TELEGRAM_TOKEN);
 }
 
 void main();
